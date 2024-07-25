@@ -1,0 +1,21 @@
+
+def permutations(lst, length):
+     if length == 0:
+         return [[]]
+
+     result = []
+
+     for i in range(len(lst)):
+         current = lst[i]
+         remaining_lst = lst[:i] + lst[i+1:]
+         for p in permutations(remaining_lst, length - 1):
+             result.append([current] + p)
+
+     return result
+
+def permutations_tuples(lst, length):
+     return [tuple(p) for p in permutations(lst, length)]
+
+example_list = [1, 2, 3]
+example_length = 2
+print(permutations_tuples(example_list, example_length))
